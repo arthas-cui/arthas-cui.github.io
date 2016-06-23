@@ -1,1 +1,3 @@
-<iframe width="888" height="800" src="http://techshow.ctrip.com/campus/"></iframe>
+如需求职， 请访问：
+
+http://techshow.ctrip.com/campus/
