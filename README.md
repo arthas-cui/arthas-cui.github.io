@@ -1,4 +1,4 @@
-如需求职， 请访问：
+如过有意愿加入携程， 请访问：
 
 http://techshow.ctrip.com/job/
 
