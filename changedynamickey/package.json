@@ -1,0 +1,6 @@
+{
+    "name": "crawler",
+    "dependencies": {
+        "request":"2.72.0"
+    }
+}

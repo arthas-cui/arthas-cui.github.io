@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>编写猥琐的反爬虫系统是怎样一种体验</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h1>
+					编写一个猥琐的反爬虫系统是怎样一种体验
+				</h1>
+				<img src="http://techshow.ctrip.com/campus/images/two-code.png" alt="" />
+				<div>
+					http://techshow.ctrip.com/campus/
+				</div>
+			</section>
+			<section>
+				<h1>为什么要反爬虫</h1>
+				<ol>
+					<li>
+						爬虫占总PV比例较高，这样浪费钱(尤其是三月份爬虫)。
+					</li>
+					<li>
+						公司可免费查询的资源被批量抓走， 丧失竞争力， 这样少赚钱。
+					</li>
+					<li>
+						爬虫是否涉嫌违法？ 如果是的话， 是否可以起诉要求赔偿？ 这样可以赚钱。
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h3>
+					反什么样的爬虫
+				</h3>
+				<ul>
+					<li>
+						十分低级的应届毕业生
+					</li>
+					<li>
+						十分低级的创业小公司
+					</li>
+					<li>
+						不小心写错了没人去停止的失控小爬虫
+					</li>
+					<li>
+						成型的商业对手
+					</li>
+					<li>
+						抽风的搜索引擎
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h1>定义</h1>
+				<ol>
+					<li>
+						爬虫 : 使用任何技术手段， 批量获取网站信息的一种方式。
+					</li>
+					<li>
+						反爬虫 : 使用任何技术手段， 阻止别人批量获取自己网站信息的一种方式。
+					</li>
+					<li>
+						误伤 : 在反爬虫的过程中， 错误的将普通用户识别为爬虫。
+					</li>
+					<li>
+						拦截 : 成功地阻止爬虫访问。
+					</li>
+					<li>
+						资源 : 机器成本与人力成本的总和。
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h3>
+					知己知彼： 如何编写简单爬虫
+				</h3>
+				<br>
+				<ol>
+					<li>
+						分析页面请求格式
+					</li>
+					<li>
+						创建合适的http请求
+					</li>
+					<li>
+						批量发送http请求， 获取数据
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h3>
+					知己知彼： 如何编写高级爬虫
+				</h3>
+				<br>
+				<ol>
+					<li>
+						分布式(我们只是为了防止封IP而已， 不要多想)
+					</li>
+					<li>
+						模拟JavaScript
+					</li>
+					<li>
+						PhantomJs
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h3>
+					优缺点
+				</h3>
+				<ol>
+					<li>
+						越是低级的爬虫，越容易被封锁， 但是性能好， 成本低。
+					</li>
+					<li>
+						越是高级的爬虫， 越难被封锁， 但是性能低， 成本也越高。
+					</li>
+					<li>
+						当成本高到一定程度， 我们就可以无需再对爬虫进行封锁。
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h3>
+					如何设计一个反爬虫系统(常规架构)
+				</h3>
+				<ol>
+					<li>
+						对请求进行预处理， 便于识别
+					</li>
+					<li>
+						识别是否是爬虫
+					</li>
+					<li>
+						针对识别结果， 进行适当的处理。
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h3>
+					上一页是逗你玩的
+				</h3>
+				<ul>
+					<li>如果能识别出爬虫， 哪还有那么多废话？想怎么搞它就怎么搞它</li>
+					<li>如果识别不出来爬虫， 你对谁做适当处理？</li>
+					<li>三句话里面有两句是废话， 只有一句有用的。 而且还没给出具体实施方式。 </li>
+					<li>这种架构(师)有什么用？</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+				<h3>传统反爬虫手段</h3>
+				<ul>
+					<li>
+						后台对访问进行统计， 如果单个IP访问超过阈值， 予以封锁。
+					</li>
+					<li>
+						后台对访问进行统计， 如果单个session访问超过阈值， 予以封锁。
+					</li>
+					<li>
+						后台对访问进行统计， 如果单个userAgent访问超过阈值， 予以封锁。
+					</li>
+					<li>
+						以上的组合
+					</li>
+					<li>
+						效果均一般， 所以还是用JavaScript比较靠谱⬇️
+					</li>
+				</ul>
+				</section>
+				<section>
+					<img src="arch.png" alt="">
+				</section>
+			</section>
+
+			<section>
+				<h3>纯JavaScript反爬虫demo</h3>
+				<ul>
+					<li>
+						更改连接地址
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>纯JavaScript反爬虫demo</h3>
+				<ul>
+					<li>更改key</li>
+				</ul>
+			</section>
+			<section>
+				<h3>纯JavaScript反爬虫demo
+				</h3>
+				<ul>
+					<li>
+						更改动态key
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>纯JavaScript反爬虫demo
+				</h3>
+				<ul>
+					<li>
+						十分复杂的更改key
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>
+					浏览器检测
+				</h3>
+				<ul>
+					<li>
+						检测IE 的bug
+					</li>
+					<li>
+						检测FF的严格
+					</li>
+					<li>
+						检测Chrome的强大特性
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>
+					我抓到你了——然后该怎么办
+				</h3>
+				<ul>
+					<li>
+						不会引发生产事件——直接拦截
+					</li>
+					<li>
+						可能引发生产事件——给假数据(也叫投毒)
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h1>技术压制</h1>
+				<ul>
+					<li>
+						DotA AI： de命令
+					</li>
+					<li>
+						当AI被击杀后， 它获取经验的倍数会提升。
+					</li>
+					<li>
+						因此， 前期杀AI太多， AI会一身神装， 无法击杀。
+					</li>
+					<li>
+						正确的做法是， 压制对方等级， 但是不击杀。
+					</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+				<h3>
+					心理战
+				</h3>
+				<ul>
+					<li>
+						挑衅
+					</li>
+					<li>
+						怜悯
+					</li>
+					<li>
+						嘲讽
+					</li>
+					<li>
+						猥琐
+					</li>
+					<li>⬇️</li>
+				</ul>
+				</section>
+				<section>
+					<img src="dream.jpg" alt="">
+				</section>
+				<section>
+					<img src="real.png" alt="">
+				</section>
+			</section>
+			<section>
+				<h3>
+					放水
+				</h3>
+				<ul>
+					<li>
+						程序员都不容易
+					</li>
+					<li>
+						做爬虫的尤其不容易
+					</li>
+					<li>
+						可怜可怜他们给他们一小口饭吃吧。 没准过几天你就因为反爬虫做得好， 改行做爬虫了
+					</li>
+				</ul>
+			</section>
+		</div>
+
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+</body>
+
+</html>
