@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		console.log('如过有意愿加入携程， 请访问：');
+		console.log('http://techshow.ctrip.com/job/');
+		console.log('如果你是应届生， 请访问：');
+		console.log('http://techshow.ctrip.com/campus/');
+	</script>
+
+	<title>js教学</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h3>语句</h3>
+				<ul>
+					<li>程序由语句构成</li>
+					<li>所有的语句必须以分号结尾</li>
+					<li>例如：console.log('hello');</li>
+					<li>这个是合法的语句</li>
+					<li>console.log('hello')</li>
+					<li>这个是有问题的。 </li>
+					<li>console.log('hello');console.log('hello');</li>
+					<li>这是两个语句， 虽然我们只写了一行</li>
+					<li>推荐的写法是：</li>
+					<li>console.log('hello');</li>
+					<li>console.log('hello');</li>
+				</ul>
+			</section>
+			<section>
+				<h3>以下哪个语句是正确的？</h3>
+				<ul>
+					<li>
+						var a = 3+4;
+					</li>
+					<li>
+						var a = 3+'4'
+					</li>
+					<li>
+						var a = 3+4.
+					</li>
+					<li>
+						var a = 3+4
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>正确答案</h3>
+				<li>
+					答案是第一个。 其他几个都不是分号结尾的， 因此不是语句
+				</li>
+			</section>
+			<section>
+				<h3>下面哪个选项有两个语句构成？</h3>
+				<ul>
+					<li>var a = 3+4;var b = 3+5</li>
+					<li>var a = 3+4;var b = 3+5;</li>
+					<li>var a = 3+4;var b = 3+5;var c = 3+6;</li>
+					<li>var a = 3+4;var b = 3+5;var c = 3+6</li>
+				</ul>
+			</section>
+			<section>
+				<h3>正确答案</h3>
+				<ul>
+					<li>var a = 3+4;var b = 3+5</li>
+					<li>分号前面是一个语句， 后面的因为不是分号结尾， 因此不是语句</li>
+					<li>var a = 3+4;var b = 3+5;</li>
+					<li>有两个语句， 这个是正确答案</li>
+					<li>var a = 3+4;var b = 3+5;var c = 3+6;</li>
+					<li>这个有三个语句</li>
+					<li>var a = 3+4;var b = 3+5;var c = 3+6</li>
+					<li>这个有两个合法语句， 后面的不是语句。 因此整段程序不可用。 不可用的程序谈不上有几个语句</li>
+				</ul>
+			</section>
+			<section>
+				<h3>定义变量</h3>
+				<ul>
+					<li>变量：用字母来表示一个数值</li>
+					<li>与数学的方程不同的是， 变量可以由多个字母([a-z], _, $)以及数字构成()</li>
+					<li>注意数字不能做开头, 不能有空格， 因为空格是分隔符。</li>
+					<li>例如：aaa是合法变量</li>
+					<li>aaa3是合法变量</li>
+					<li>3aaa是非法变量， 因为数字不允许做开头。 </li>
+				</ul>
+			</section>
+			<section>
+				<h3>以下哪个变量是合法的？</h3>
+				<ul>
+					<li>3Cat</li>
+					<li>Cat 3</li>
+					<li>mouse_4</li>
+					<li>$person</li>
+				</ul>
+			</section>
+			<section>
+				<h3>答案</h3>
+				<ul>
+					<li>3Cat 非法， 数字开头</li>
+					<li>Cat 3 非法， 有空格</li>
+					<li>_mouse_4 合法， 使用下划线做开头</li>
+					<li>$person 合法， 使用$做开头</li>
+				</ul>
+			</section>
+			<section>
+				<h3>定义变量与赋值</h3>
+				<ul>
+					<li>定义变量， 使用var关键字。 </li>
+					<li>例如： var a;</li>
+					<li>这样就定义了一个变量， 叫a， 后面就可以使用a这个变量了</li>
+					<li>这个时候， 这个变量是没有值的</li>
+					<li>定义完变量， 变量就可以被赋值了。 </li>
+					<li>赋值使用等号。 例如：a=3;</li>
+					<li>这个时候a就有值了， 值为3. </li>
+					<li>如果再做一次赋值， a=4;</li>
+					<li>那么a就为4了， 不再等于3</li>
+
+				</ul>
+			</section>
+			<section>
+				<h3>定义的同时赋值</h3>
+				<ul>
+					<li>通常， 我们在定义变量的同时， 会给一个初始值。 我们可以在定义的同时做赋值</li>
+					<li>例如：</li>
+					<li>var a = 3;</li>
+					<li>这样我们就定义了一个变量叫a， 并且a的值为3</li>
+				</ul>
+			</section>
+			<section id="s10">
+				<iframe src="demos/s10/s10.html" frameborder="0" width="100%" height="100%"></iframe>
+			</section>
+		</div>
+
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+</body>
+
+</html>
